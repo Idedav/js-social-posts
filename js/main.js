@@ -56,9 +56,11 @@ const posts = [
     }
 ];
 
+const likePosts = [];
+
 const containerPost = document.getElementById('container');
 posts.forEach(post => {
-    const {id,author, created, content, media, likes} = post;
+    const {id, author, created, content, media, likes} = post;
     containerPost.innerHTML +=`
                 <div class="post">
             <div class="post__header">
@@ -101,15 +103,18 @@ likesButton.forEach((btn,index)=>{
     btn.addEventListener('click', function(e){
         e.preventDefault();
         btn.classList.toggle('active');
-        let like = posts[index];
-        if(isLike === false){
-            like.likes++;
-            likesCounter[index].innerHTML = like.likes;
+        let post = posts[index];
+        if(!isLike){
+            post.likes++;
+            likesCounter[index].innerHTML = post.likes;
+            likePosts.push(post.id);
             isLike = true;
         }else{
-            like.likes--;
-            likesCounter[index].innerHTML = like.likes;
+            post.likes--;
+            likesCounter[index].innerHTML = post.likes;
+            likePosts.pop(post.id);
             isLike = false;
         }
+        console.log(likePosts);
     })
 })
