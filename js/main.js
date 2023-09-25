@@ -61,6 +61,7 @@ const likePosts = [];
 const containerPost = document.getElementById('container');
 posts.forEach(post => {
     const {id, author, created, content, media, likes} = post;
+    const date = created.toString().split('-').reverse().join('-');
     containerPost.innerHTML +=`
                 <div class="post">
             <div class="post__header">
@@ -70,7 +71,7 @@ posts.forEach(post => {
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${author.name}</div>
-                        <div class="post-meta__time">${created}</div>
+                        <div class="post-meta__time">${date}</div>
                     </div>                    
                 </div>
             </div>
