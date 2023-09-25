@@ -38,7 +38,7 @@ const posts = [
         media: "https://unsplash.it/600/400?image=24",
         author: {
             name: "Luca Formicola",
-            image: "https://unsplash.it/300/300?image=40"
+            image: null,
         },
         likes: 56,
         created: "2021-04-03"
@@ -62,6 +62,9 @@ const containerPost = document.getElementById('container');
 posts.forEach(post => {
     const {id, author, created, content, media, likes} = post;
     const date = created.split('-').reverse().join('-');
+    if(author.image === null){
+        author.image = 'img/avatar.jpg'
+    }
     containerPost.innerHTML +=`
                 <div class="post">
             <div class="post__header">
@@ -103,7 +106,7 @@ likesButton.forEach((btn,index)=>{
     let isLike = false;
     btn.addEventListener('click', function(e){
         e.preventDefault();
-        btn.classList.toggle('active');
+        btn.classList.toggle('like-button--liked');
         let post = posts[index];
         if(!isLike){
             post.likes++;

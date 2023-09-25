@@ -112,10 +112,6 @@ h1 {
     color: #404040;
 }
 
-.like-button.active{
-    color: red;
-}
-
 .like-button:not(.like-button--liked):hover {
     background-color: #e3e3e3
 }
