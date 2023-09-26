@@ -56,7 +56,7 @@ const posts = [
     }
 ];
 
-const likePosts = [];
+const likePosts = [2, 5];
 
 const containerPost = document.getElementById('container');
 posts.forEach(post => {
@@ -103,10 +103,13 @@ const likesButton = document.querySelectorAll('.js-like-button');
 const likesCounter = document.querySelectorAll('.js-likes-counter');
 
 likesButton.forEach((btn,index)=>{
+    let post = posts[index];
+    if(likePosts.includes(post.id)){
+        btn.classList.add('like-button--liked');
+    }
     btn.addEventListener('click', function(e){
         e.preventDefault();
         btn.classList.toggle('like-button--liked');
-        let post = posts[index];
         if(likePosts.includes(post.id)){
             post.likes--;
             likePosts.pop(post.id);
