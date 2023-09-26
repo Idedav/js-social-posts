@@ -103,22 +103,18 @@ const likesButton = document.querySelectorAll('.js-like-button');
 const likesCounter = document.querySelectorAll('.js-likes-counter');
 
 likesButton.forEach((btn,index)=>{
-    let isLike = false;
     btn.addEventListener('click', function(e){
         e.preventDefault();
         btn.classList.toggle('like-button--liked');
         let post = posts[index];
-        if(!isLike){
-            post.likes++;
-            likesCounter[index].innerHTML = post.likes;
-            likePosts.push(post.id);
-            isLike = true;
-        }else{
+        if(likePosts.includes(post.id)){
             post.likes--;
-            likesCounter[index].innerHTML = post.likes;
             likePosts.pop(post.id);
-            isLike = false;
+        }else{
+            post.likes++;
+            likePosts.push(post.id);
         }
+        likesCounter[index].innerHTML = post.likes;
         console.log(likePosts);
     })
 })
